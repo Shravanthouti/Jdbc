@@ -111,5 +111,44 @@ public class JDBCApplication {
         }
         
 	}
+	
+	private static Account getInput() {
+        // Taking input from the user
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your Account ID: ");
+        String accountId = sc.next();
+        System.out.println("Enter your AccountHolder Name: ");
+        String accountHolderName = sc.next();
+        System.out.println("Enter your AccountType: ");
+        String accountType = sc.next();
+        System.out.println("Enter your Account Balance: ");
+        float balance = sc.nextFloat();
+        System.out.println("Enter your AccountHolder Address: ");
+        String address = sc.next();
+        System.out.println("Enter your AccountHolder ContactNumber: ");
+        String contactNumber = sc.next();
+        System.out.println("Enter your AccountHolder DOB(yyyy-MM-dd): ");
+        String dob = sc.next();
+        DateTimeFormatter dateFormatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //Date date = dateFormatter.format(dob);
+        LocalDate date = LocalDate.parse(dob, dateFormatter);
+
+        //setting those values
+        Account account = new Account();
+        account.setAccountId(accountId);
+        account.setAccountHolderName(accountHolderName);
+        account.setAccountType(accountType);
+        account.setAccountStatus(true);
+        account.setAddress(address);
+        account.setBalance(balance);
+        account.setContactNumber(contactNumber);
+        account.setAccountCreatedDate(LocalDate.now());
+        account.setDob(date);
+
+        sc.close();
+
+        return account;
+
+    }
 
 }
